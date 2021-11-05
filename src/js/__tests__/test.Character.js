@@ -59,6 +59,12 @@ test('Test Zombie', () => {
   expect(resalt).toEqual(expected[5]);
 });
 
-test('Test Character on Error', () => {
-  expect(Bowerman).toThrow();
+test('Test Character on Error name', () => {
+  const testErr1 = new Bowerman('В', 'Zombie').name;
+  expect(testErr1).toBe('Ошибка: в имени должно быть min - 2 символа, max - 10');
+});
+
+test('Test Character on Error type', () => {
+  const testErr1 = new Bowerman('Ваня', 'Zomb').type;
+  expect(testErr1).toBe('Ошибка типа персонажа!!');
 });

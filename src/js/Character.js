@@ -1,13 +1,21 @@
 export default class Character {
   constructor(name, type) {
-    this.name = name;
-    if ((this.name.length < 2) || (this.name.length > 10)) { throw new Error('Количество букв в имени персонажа должно быть не менее 1, но не более 10!'); }
+    try {
+      if ((name.length < 2) || (name.length > 10)) {
+        throw new Error('Ошибка: в имени должно быть min - 2 символа, max - 10');
+      } else  { this.name = name; }
+    } catch(e) { return this.name = e.message }
+
     const charTypes = ['Bowman', 'Swordsman', 'Magician', 'Daemon', 'Undead', 'Zombie'];
-    this.type = type;
-    if (!charTypes.includes(this.type)) { throw new Error('Ошибка типа персонажа!!'); }
+
+    try {
+      if (!charTypes.includes(type)) {
+        throw new Error('Ошибка типа персонажа!!');
+      } else { this.type = type; }
+    } catch(e) { return this.type = e.message;}
     this.health = 100;
     this.level = 1;
-    this.attack = 1;
-    this.defence = 1;
+    this.attack = undefined;
+    this.defence = undefined;
   }
 }
